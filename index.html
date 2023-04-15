@@ -202,11 +202,13 @@
 	    });
 	 }
 	
-	var getsec = function(){ 
+	var getsec = function(){
+	    featurelat = localStorage.getItem("feature-lat");
+	    featurelng = localStorage.getItem("feature-lng");	
 	    $.ajax({
 	      url: 'https://camarasdefotodeteccion.com/getsector',
 	      method : 'POST',
-	      data: {"user_lat":40.7344544, "user_lon":-73.8722772, "state": "occupied"},
+	      data: {"user_lat":featurelat, "user_lon":featurelng, "state": "occupied"},
 	      success : function(data){ 
 		 console.log(data)
 	      }, error: function(err){console.log('Failed');} 
