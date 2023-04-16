@@ -138,6 +138,24 @@
 	    y.innerHTML = "<table style='margin-bottom: -20px; margin-left: 9px; padding-top: 20px;'><tr><td><image src='icon_available.png' style='width: 17px'></td><td style='padding-bottom: 4px;'>Available Parking Alert Activated<td></tr></table> ";
 	}
 	
+	// Definir la variable "data" como un objeto GeoJSON
+	var data = {
+	  "type": "FeatureCollection",
+	  "features": [
+	    {
+	      "type": "Feature",
+	      "geometry": {
+		"type": "Point",
+		"coordinates": [-0.09, 51.505]
+	      },
+	      "properties": {
+		"nombre": "Londres",
+		"descripcion": "Ciudad capital del Reino Unido"
+	      }
+	    }
+	  ]
+	};
+	
 	// Agregar una capa al mapa
 	var layer = L.geoJSON(data).addTo(map);
 	
