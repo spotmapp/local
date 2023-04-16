@@ -162,14 +162,8 @@
 	// Agregar una capa al grupo
 	var layer = L.geoJSON(data).addTo(group);
 
-	
 	// Agregar evento de clic a la capa
 	layer.on('click', function(e) {
-	  // ...
-	});
-
-	// Agregar evento de clic al mapa
-	map.on('click', function(e) {
 	  // Crear el contenido del popup
 	  var popupContent = '<form><label>Nombre:</label><input type="text" name="nombre"><br><label>Descripción:</label><textarea name="descripcion"></textarea><br><input type="submit" value="Guardar"></form>';
 
@@ -184,10 +178,17 @@
 	    // Agregar los datos ingresados al objeto e.target.feature y al mapa
 	    e.target.feature.properties.nombre = nombre;
 	    e.target.feature.properties.descripcion = descripcion;
-	    layer.addData(e.target.feature);
+	    // Agregar la capa actualizada al grupo de capas
+	    group.removeLayer(layer);
+	    group.addLayer(e.target);
 	    // Cerrar el popup
 	    map.closePopup();
 	  });
+	});
+
+	// Agregar evento de clic al mapa
+	map.on('click', function(e) {
+	  // ...
 	});
   	
 	var fun = function(la, lo, state){
