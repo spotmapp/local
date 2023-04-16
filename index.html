@@ -156,8 +156,12 @@
 	  ]
 	};
 	
-	// Agregar una capa al mapa
-	var layer = L.geoJSON(data).addTo(map);
+	// Crear un nuevo grupo de capas
+	var group = L.layerGroup().addTo(map);
+
+	// Agregar una capa al grupo
+	var layer = L.geoJSON(data).addTo(group);
+
 	
 	// Agregar evento de clic a la capa
 	layer.on('click', function(e) {
