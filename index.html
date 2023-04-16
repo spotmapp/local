@@ -138,7 +138,7 @@
 		  // Crear el contenido del popup
 		  //popupContent =" <span class= 'titl'> <button type='button' onclick='ocuppy()' class='leaflet-popup-close-button' style='background: #f4f716; padding: 12px; border: none; width: 100%; font-size: 18px; font-weight: bold;' > Ocuppy this parking lot </button></span></br>";
 	
-		  var popupContent = "<form><label>Nombre:</label><input type='text' name='nombre'><br><label>Descripción:</label><textarea name='descripcion'></textarea><br> <span class= 'titl'> <button type='button' onclick='ocuppy()' class='leaflet-popup-close-button' style='background: #f4f716; padding: 12px; border: none; width: 100%; font-size: 18px; font-weight: bold;' > Ocuppy this parking lot </button></span></form>";
+		  var popupContent = "<form><label>Nombre:</label><input type='text' name='nombre'><br><label>Descripción:</label><textarea name='descripcion'></textarea><br><button type='button' onclick='ocuppy()' class='leaflet-popup-close-button' style='background: #f4f716; padding: 12px; border: none; width: 100%; font-size: 18px; font-weight: bold;' > Ocuppy this parking lot </button></form>";
 		  var popup = L.popup().setContent(popupContent);
 		  // Crear el popup y mostrarlo
 	          popup.setLatLng(e.latlng).openOn(map);
