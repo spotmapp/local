@@ -137,6 +137,31 @@
 	    audio.play();
 	    y.innerHTML = "<table style='margin-bottom: -20px; margin-left: 9px; padding-top: 20px;'><tr><td><image src='icon_available.png' style='width: 17px'></td><td style='padding-bottom: 4px;'>Available Parking Alert Activated<td></tr></table> ";
 	}
+	
+	// Agregar una capa al mapa
+	var layer = L.geoJSON(data).addTo(map);
+
+	// Agregar evento de clic a la capa
+	layer.on('click', function(e) {
+	  // Crear el contenido del popup
+	  var popupContent = '<form><label>Nombre:</label><input type="text" name="nombre"><br><label>Descripción:</label><textarea name="descripcion"></textarea><br><input type="submit" value="Guardar"></form>';
+
+	  // Crear el popup y mostrarlo
+	  var popup = L.popup().setContent(popupContent).setLatLng(e.latlng).openOn(map);
+
+	  // Agregar evento de envío del formulario
+	  popup._content.querySelector('form').addEventListener('submit', function(event) {
+	    event.preventDefault();
+	    var nombre = this.elements.nombre.value;
+	    var descripcion = this.elements.descripcion.value;
+	    // Agregar los datos ingresados al objeto e.target.feature y al mapa
+	    e.target.feature.properties.nombre = nombre;
+	    e.target.feature.properties.descripcion = descripcion;
+	    layer.addData(e.target.feature);
+	    // Cerrar el popup
+	    map.closePopup();
+	  });
+	});
   	
 	var fun = function(la, lo, state){
 	    $.ajax({
