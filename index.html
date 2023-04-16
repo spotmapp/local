@@ -137,9 +137,9 @@
 		map.on('click', function(e) {
 		  // Crear el contenido del popup
 		  var popupContent = '<form><label>Nombre:</label><input type="text" name="nombre"><br><label>Descripción:</label><textarea name="descripcion"></textarea><br><input type="submit" value="Guardar"></form>';
-
+		   var popup = L.popup().setContent(popupContent);
 		  // Crear el popup y mostrarlo
-		  var popup = L.popup().setContent(popupContent).setLatLng(e.latlng).openOn(map);
+	          popup.setLatLng(e.latlng).openOn(map);
 
 		  // Agregar evento de envío del formulario
 		  popup._content.querySelector('form').addEventListener('submit', function(event) {
@@ -172,10 +172,10 @@
 		layer.on('click', function(e) {
 		  // Crear el contenido del popup
 		  var popupContent = '<form><label>Nombre:</label><input type="text" name="nombre"><br><label>Descripción:</label><textarea name="descripcion"></textarea><br><input type="submit" value="Guardar"></form>';
-
+                  var popup = L.popup().setContent(popupContent);
 		  // Crear el popup y mostrarlo
-		  var popup = L.popup().setContent(popupContent).setLatLng(e.latlng).openOn(map);
-
+	          popup.setLatLng(e.latlng).openOn(map);
+                  
 		  // Agregar evento de envío del formulario
 		  popup._content.querySelector('form').addEventListener('submit', function(event) {
 		    event.preventDefault();
