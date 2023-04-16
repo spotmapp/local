@@ -156,41 +156,14 @@
 	  ]
 	};
 	
-// Crear un objeto L.LayerGroup
-var layerGroup = L.layerGroup().addTo(map);
-
-// Agregar las capas geoJSON al objeto L.LayerGroup
-L.geoJSON(data, {
-  onEachFeature: function (feature, layer) {
-    layerGroup.addLayer(layer);
-  }
-});
-
-// Agregar evento de clic a la capa
-layerGroup.on('click', function(e) {
+// Agregar evento de clic al mapa
+map.on('click', function(e) {
   // Crear el contenido del popup
-  var popupContent = '<form><label>Nombre:</label><input type="text" name="nombre"><br><label>Descripción:</label><textarea name="descripcion"></textarea><br><input type="submit" value="Guardar"></form>';
+  var popupContent = 'Latitud: ' + e.latlng.lat.toFixed(6) + '<br>Longitud: ' + e.latlng.lng.toFixed(6);
 
   // Crear el popup y mostrarlo
   var popup = L.popup().setContent(popupContent).setLatLng(e.latlng).openOn(map);
-
-  // Agregar evento de envío del formulario
-  popup._content.querySelector('form').addEventListener('submit', function(event) {
-    event.preventDefault();
-    var nombre = this.elements.nombre.value;
-    var descripcion = this.elements.descripcion.value;
-    // Agregar los datos ingresados al objeto e.target.feature y al mapa
-    e.target.feature.properties.nombre = nombre;
-    e.target.feature.properties.descripcion = descripcion;
-    // Crear una nueva capa con los datos actualizados
-    var newLayer = L.geoJSON(e.target.feature);
-    // Agregar la nueva capa al objeto L.LayerGroup
-    layerGroup.addLayer(newLayer);
-    // Cerrar el popup
-    map.closePopup();
-  });
 });
-
 
 
   	
