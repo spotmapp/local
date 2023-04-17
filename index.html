@@ -136,7 +136,7 @@ var layer = L.geoJSON(data).addTo(map);
 // Agregar evento de clic a la capa
 map.on('click', function(e) {
   // Crear el contenido del popup
-  var popupContent = '<form><label>Nombre:</label><input type="text" name="nombre"><br><label>Descripción:</label><textarea name="descripcion"></textarea><br><button type="button" onclick="ocuppy()" class="leaflet-popup-close-button" style="background: #f4f716; padding: 12px; border: none; width: 100%; font-size: 18px; font-weight: bold;" > Save this point </button></form>';
+  var popupContent = '<form><label>Nombre:</label><input type="text" name="nombre"><br><label>Descripción:</label><textarea name="descripcion"></textarea><br><button type="button" onclick="ocuppy(user_lat,user_lon)" class="leaflet-popup-close-button" style="background: #f4f716; padding: 12px; border: none; width: 100%; font-size: 18px; font-weight: bold;" > Save this point </button></form>';
 
   // Crear el popup y mostrarlo
   var popup = L.popup().setContent(popupContent).setLatLng(e.latlng).openOn(map);
@@ -200,13 +200,14 @@ map.on('click', function(e) {
 	    });
 	 }
 	
-	var ocuppy = function(){
+	var ocuppy = function(user_lat,user_lon){
 	   var now = new Date().toISOString().slice(0, 16);
-	   featurelat = localStorage.getItem("feature-lat");
-	   featurelng = localStorage.getItem("feature-lng");
+	   //featurelat = localStorage.getItem("feature-lat");
+	   //featurelng = localStorage.getItem("feature-lng");
 	   localStorage.setItem('feature-occupy-moment', now);
 	   state = "occupied"
-	   fun(featurelat,featurelng,state)
+	   fun(user_lat,user_lon,state)
+	   map.closePopup();	
 	   //window.location.reload();
 	}
 	
