@@ -136,7 +136,7 @@ var layer = L.geoJSON(data).addTo(map);
 // Agregar evento de clic a la capa
 map.on('click', function(e) {
   // Crear el contenido del popup
-  var popupContent = '<form><label>Nombre:</label><input type="text" name="nombre"><br><label>Descripción:</label><textarea name="descripcion"></textarea><br><input type="submit" value="Guardar"></form>';
+  var popupContent = '<form><label>Nombre:</label><input type="text" name="nombre"><br><label>Descripción:</label><textarea name="descripcion"></textarea><br><button type="button" onclick="ocuppy()" class="leaflet-popup-close-button" style="background: #f4f716; padding: 12px; border: none; width: 100%; font-size: 18px; font-weight: bold;" > Save this point </button></form>';
 
   // Crear el popup y mostrarlo
   var popup = L.popup().setContent(popupContent).setLatLng(e.latlng).openOn(map);
