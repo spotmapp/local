@@ -130,30 +130,18 @@
 	       marker.bindPopup('<p style="font-weight: bold; font-size:15px">You are here</p>').openPopup();
 	       fun3(user_lat,user_lon)
 
-// Agregar una capa al mapa
-var layer = L.geoJSON(data).addTo(map);
+		// Agregar una capa al mapa
+		var layer = L.geoJSON(data).addTo(map);
 
-// Agregar evento de clic a la capa
-map.on('click', function(e) {
-  // Crear el contenido del popup
-  var popupContent = '<form><label>Nombre:</label><input type="text" name="nombre"><br><label>Descripción:</label><textarea name="descripcion"></textarea><br><button type="button" onclick="ocuppy(user_lat,user_lon)" class="leaflet-popup-close-button" style="background: #f4f716; padding: 12px; border: none; width: 100%; font-size: 18px; font-weight: bold;" > Save this point </button></form>';
+		// Agregar evento de clic a la capa
+		map.on('click', function(e) {
+		  // Crear el contenido del popup
+		  var popupContent = '<form><label>Nombre:</label><input type="text" id="nombre" name="nombre"><br><label>Descripción:</label><textarea id="descripcion" name="descripcion"></textarea><br><button type="button" onclick="ocuppy(user_lat,user_lon)" class="leaflet-popup-close-button" style="background: #f4f716; padding: 12px; border: none; width: 100%; font-size: 18px; font-weight: bold;" > Save this point </button></form>';
 
-  // Crear el popup y mostrarlo
-  var popup = L.popup().setContent(popupContent).setLatLng(e.latlng).openOn(map);
+		  // Crear el popup y mostrarlo
+		  var popup = L.popup().setContent(popupContent).setLatLng(e.latlng).openOn(map);
 
-  // Agregar evento de envío del formulario
-  popup._content.querySelector('form').addEventListener('submit', function(event) {
-    event.preventDefault();
-    var nombre = this.elements.nombre.value;
-    var descripcion = this.elements.descripcion.value;
-    // Agregar los datos ingresados al objeto e.target.feature y al mapa
-    e.target.feature.properties.nombre = nombre;
-    e.target.feature.properties.descripcion = descripcion;
-    layer.addData(e.target.feature);
-    // Cerrar el popup
-    map.closePopup();
-  });
-});
+		});
 
 		
 	}, console.error, options);	
@@ -206,7 +194,9 @@ map.on('click', function(e) {
 	   //featurelng = localStorage.getItem("feature-lng");
 	   localStorage.setItem('feature-occupy-moment', now);
 	   state = "occupied"
-	   fun(user_lat,user_lon,state)
+	   nombre = document.getElementById("nombre");
+	   descripcion = document.getElementById("descripcion");
+	   fun(user_lat,user_lon,nombre,descripcion,state)
 	   map.closePopup();	
 	   //window.location.reload();
 	}
